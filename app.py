@@ -1,11 +1,13 @@
 import json 
 import os 
-from flask import Flask, jsonify, render_template_string
+from flask import Flask, jsonify, render_template_string, send_from_directory
 import platform 
 import socket 
 import time 
 
 START_TIME = time.time()
+ASSETS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets')
+IMAGE = 'image1.jpg'
 
 app = Flask(__name__)
 
@@ -43,6 +45,12 @@ def report():
         'python_version': platform.python_version(),
         'uptime_seconds': round(time.time() - START_TIME, 2)
     })
+
+@app.get('/api/images')
+@app.get('/api/images/<filename>')
+def images(filename=IMAGE):
+    return send_from_directory(ASSETS_DIR, filename)
+
 if __name__ == '__main__':
     app.run(
         host='0.0.0.0',
