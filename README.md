@@ -16,4 +16,5 @@ python app.py
 - ```/api/health/```: check health status of the server
 - ```/api/config```: show configuration of app and version
 - ```/api/report```: show additional information such as hostname, python version, uptime
-- ```/api/images```: display picture of a cat
+- ```/api/images```: display picture 
+
